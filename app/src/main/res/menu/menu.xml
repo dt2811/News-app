@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/HomeButton"
+    android:title="Home"
+    android:icon="@drawable/ic_baseline_home_24"
+    />
+    <item
+        android:id="@+id/searchButton"
+        android:title="Search"
+        android:icon="@drawable/ic_baseline_search_24"
+        />
+    <item
+        android:id="@+id/watchlater"
+        android:title="Watch later"
+        android:icon="@drawable/ic_baseline_watch_later_24"
+        />
+
+</menu>
