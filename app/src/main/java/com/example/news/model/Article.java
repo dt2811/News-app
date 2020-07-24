@@ -6,6 +6,15 @@ public class Article {
     private String image_url;
     private String description;
     private String article_url;
+    private int saved=0;
+
+    public int getSaved() {
+        return saved;
+    }
+
+    public void setSaved(int saved) {
+        this.saved = saved;
+    }
 
     public Article() {
     }

@@ -16,9 +16,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalNewsBank {
+public class WorldNewsBank {
     ArrayList<Article> articleArrayList=new ArrayList<>();
-    private String url="https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=6dd4184620bf4fab958f2b2c2055ae19";
+    private String url="https://api.nytimes.com/svc/topstories/v2/world.json?api-key=RvxHN3VZSXYjWlcBONNqO2DBnvaEFHlY";
     public List<Article> getArticle(final AnswerListAsyncResponse callback){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -26,16 +26,19 @@ public class LocalNewsBank {
 
                 try {
 
-                    JSONArray jsonArray=response.getJSONArray("articles");
+                    JSONArray jsonArray=response.getJSONArray("results");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         Article article=new Article();
+                        JSONArray jsonArray1=jsonObject.getJSONArray("multimedia");
+                        JSONObject jsonObject1=jsonArray1.getJSONObject(0);
+                        article.setImage_url(jsonObject1.getString("url"));
                         article.setTitle(jsonObject.getString("title"));
-                        article.setImage_url(jsonObject.getString("urlToImage"));
-                        article.setDescription(jsonObject.getString("content"));
+
+                        article.setDescription(jsonObject.getString("abstract"));
                         article.setArticle_url(jsonObject.getString("url"));
                         articleArrayList.add(article);
-
+                        Log.d("Title", "onResponse: "+article.getTitle());
 
                     }
                 } catch (JSONException e) {
@@ -53,5 +56,4 @@ public class LocalNewsBank {
         AppController.getInstance().addToRequestQueue(jsonObjectRequest);
         return articleArrayList;
     }
-
 }
