@@ -5,8 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -16,16 +17,23 @@
 
             <ImageView
                 android:id="@+id/imageview"
-                android:layout_width="350dp"
-                android:layout_height="200dp"
-                android:src="@color/colorPrimary"/>
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
+                android:layout_width="369dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="center"
+                android:padding="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="DESCRIPTION"
-                android:textSize="30dp" />
+                android:textColor="#000"
+                android:textSize="30sp" />
             />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

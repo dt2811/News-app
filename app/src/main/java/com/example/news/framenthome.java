@@ -16,8 +16,12 @@ import java.util.ArrayList;
 
 public class framenthome extends Fragment {
         ArrayList<String> title=new ArrayList<>();
-    TextView t1;
+    ArrayList<String> title_global=new ArrayList<>();
+
+    TextView t1,t2;
     ArrayList<String> url=new ArrayList<>();
+    ArrayList<String> url_global=new ArrayList<>();
+    RecyclerView recyclerView;
     View view;
     @Nullable
     @Override
@@ -26,13 +30,23 @@ public class framenthome extends Fragment {
         title.add("hello");
         title.add("yo");
         title.add("HOW are you");
+        title_global.add("HEYGLOBAL");
+        title_global.add("WHATSYP SDKFDJDFKJFDJDFJFDJDJJDFSJFDJFDJFDJFJDFJDFJFJFDJFDJFDJSKSDDJKFD");
+        url_global.add("sjjffjjfjfjf");
         url.add("http://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg");
-        RecyclerView recyclerView=view.findViewById(R.id.recycler);
+     recyclerView=view.findViewById(R.id.recycler);
+     t2=view.findViewById(R.id.t3);
  t1=view.findViewById(R.id.t2);
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setText("Clicked");
+                recyclerView.setAdapter(new recycleradpater(getContext(),title,url));
+            }
+        });
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.setAdapter(new recycleradpater(getContext(),title_global,url_global));
             }
         });
 
