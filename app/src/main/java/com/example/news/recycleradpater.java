@@ -2,7 +2,7 @@ package com.example.news;
 
 import android.content.Context;
 import android.content.Intent;
-
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +18,12 @@ import com.bumptech.glide.Glide;
 import com.example.news.data.DatabaseHandler;
 import com.example.news.model.Article;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder> {
     Context context;
     int where;
+    int counter=0;
 
     List<Article> articleList;
     public recycleradpater(Context context,  List<Article> articleList,int where)
@@ -51,7 +51,10 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
         holder.c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//               Intent i= new Intent(context,newspage.class);
+                if(counter!=1){
+              Intent i= new Intent(Intent.ACTION_VIEW);
+              i.setData(Uri.parse(article.getArticle_url()));
+              context.startActivity(i);}
 //               i.putExtra("title",article.getTitle());
 //               i.putExtra("image_url",article.getImage_url());
 //               i.putExtra("content",article.getDescription());
@@ -76,14 +79,14 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
                     }
                 }
                 if(where==2){
-
+                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                     db.deleteArticle(article);
                     article.setSaved(0);
                 }
 
+               counter=0;
 
-
-                return false;
+                return true;
             }
         });
     }

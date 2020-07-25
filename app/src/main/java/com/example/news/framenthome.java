@@ -27,7 +27,6 @@ import java.util.List;
 
 public class framenthome extends Fragment {
     Covid covid=new Covid();
-
     List<Article> articleListLocal=new ArrayList<>();
     List<Article> articleListGlobal=new ArrayList<>();
     TextView t1,t2,t11,t13,t14;
@@ -74,13 +73,16 @@ public class framenthome extends Fragment {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                t1.setTextColor(getResources().getColor(R.color.black));
+                t2.setTextColor(getResources().getColor(R.color.grey));
                 recyclerView.setAdapter(new recycleradpater(getContext(),articleListLocal,1));
             }
         });
         t2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                t2.setTextColor(getResources().getColor(R.color.black));
+             t1.setTextColor(getResources().getColor(R.color.grey));
                 recyclerView.setAdapter(new recycleradpater(getContext(),articleListGlobal,1));
             }
         });

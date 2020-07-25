@@ -8,8 +8,7 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -28,13 +27,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksandbold"
                 android:gravity="center"
-                android:padding="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:padding="2.5dp"
+                android:paddingLeft="2.5dp"
+                android:paddingTop="2.5dp"
+                android:paddingBottom="2.5dp"
                 android:text="DESCRIPTION"
                 android:textColor="#000"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
             />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
