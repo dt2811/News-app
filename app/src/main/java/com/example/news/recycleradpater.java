@@ -2,6 +2,7 @@ package com.example.news;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,24 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.news.data.DatabaseHandler;
+import com.example.news.model.Article;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder> {
     Context context;
-    ArrayList<String> title,url;
-    public recycleradpater(Context context, ArrayList<String> title, ArrayList<String> url)
+    int where;
+
+    List<Article> articleList;
+    public recycleradpater(Context context,  List<Article> articleList,int where)
     {
+        this.articleList=articleList;
         this.context=context;
-        this.title=title;
-        this.url=url;
+        this.where=where;
+
     }
 
 
@@ -36,13 +45,18 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int position) {
-        holder.t.setText(title.get(position));
-        //Glide.with(context).load(url.get(0)).into(holder.i);
+        final Article article=articleList.get(position);
+        holder.t.setText(article.getTitle());
+        Glide.with(context).load(article.getImage_url()).into(holder.i);
         holder.c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent i= new Intent(context,newspage.class);
-                 context.startActivity(i);
+//               Intent i= new Intent(context,newspage.class);
+//               i.putExtra("title",article.getTitle());
+//               i.putExtra("image_url",article.getImage_url());
+//               i.putExtra("content",article.getDescription());
+//               i.putExtra("article_url",article.getArticle_url());
+//                 context.startActivity(i);
                 //Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
 
             }
@@ -51,7 +65,24 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
             @Override
             public boolean onLongClick(View view) {
                 // save database
-                Toast.makeText(context, "saved", Toast.LENGTH_SHORT).show();
+                DatabaseHandler db=new DatabaseHandler(context);
+                if(where==1) {
+                    if (article.getSaved() == 0) {
+                        db.addArticle(article);
+                        article.setSaved(1);
+                        Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Already Saved", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(where==2){
+
+                    db.deleteArticle(article);
+                    article.setSaved(0);
+                }
+
+
+
                 return false;
             }
         });
@@ -59,7 +90,7 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
 
     @Override
     public int getItemCount() {
-        return title.size();
+        return articleList.size();
     }
 
     class holder extends RecyclerView.ViewHolder{

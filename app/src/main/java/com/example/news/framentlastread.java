@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.news.data.DatabaseHandler;
+
 import java.util.ArrayList;
 
 public class framentlastread extends Fragment {
@@ -20,10 +22,11 @@ public class framentlastread extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View view=inflater.inflate(R.layout.late,container,false);
+        DatabaseHandler db=new DatabaseHandler(getContext());
         RecyclerView recyclerView;
         recyclerView=view.findViewById(R.id.recycler2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL,false));
-        recyclerView.setAdapter(new recycleradpater(getContext(),title,url));
+        recyclerView.setAdapter(new recycleradpater(getContext(),db.getAllArticles(),2));
 
 
 
