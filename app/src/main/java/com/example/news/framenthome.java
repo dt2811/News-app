@@ -29,7 +29,7 @@ public class framenthome extends Fragment {
     Covid covid=new Covid();
     List<Article> articleListLocal=new ArrayList<>();
     List<Article> articleListGlobal=new ArrayList<>();
-    TextView t1,t2,t11,t13,t14;
+    TextView t1,t2,t11,t13,t14,dc,dr,dd;
 
     RecyclerView recyclerView;
     View view;
@@ -37,16 +37,22 @@ public class framenthome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        view=inflater.inflate(R.layout.homefragment,container,false);
-        t11=view.findViewById(R.id.t11);
-        t13=view.findViewById(R.id.t13);
-        t14=view.findViewById(R.id.t14);
+        t11=view.findViewById(R.id.conf);
+        t13=view.findViewById(R.id.dead);
+        t14=view.findViewById(R.id.rec);
+        dc=view.findViewById(R.id.dc);
+        dr=view.findViewById(R.id.dr);
+        dd=view.findViewById(R.id.dd);
         covid=new CovidStatsBank().getCovid(new CovidAsyncRespone() {
             @Override
             public void processFinished(Covid covid) {
                 Log.d("test", "onCreateView: "+covid.getConfirmed());
-                t11.setText(MessageFormat.format("Confirmed: {0}", covid.getConfirmed()));
-                t13.setText(MessageFormat.format("Deaths: {0}", covid.getDeceased()));
-                t14.setText(MessageFormat.format("Recovered: {0}", covid.getRecovered()));
+                t11.setText(MessageFormat.format("{0}", covid.getConfirmed()));
+                t13.setText(MessageFormat.format("{0}", covid.getDeceased()));
+                t14.setText(MessageFormat.format("{0}", covid.getRecovered()));
+                dc.setText(MessageFormat.format("+{0}", covid.getDailyConfirmed()));
+                dr.setText(MessageFormat.format("+{0}", covid.getDailyRecovered()));
+                dd.setText(MessageFormat.format("+{0}", covid.getDailyDeceased()));
             }
         });
 
@@ -73,7 +79,7 @@ public class framenthome extends Fragment {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t1.setTextColor(getResources().getColor(R.color.black));
+                t1.setTextColor(getResources().getColor(R.color.orange));
                 t2.setTextColor(getResources().getColor(R.color.grey));
                 recyclerView.setAdapter(new recycleradpater(getContext(),articleListLocal,1));
             }
@@ -81,7 +87,7 @@ public class framenthome extends Fragment {
         t2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                t2.setTextColor(getResources().getColor(R.color.black));
+                t2.setTextColor(getResources().getColor(R.color.orange));
              t1.setTextColor(getResources().getColor(R.color.grey));
                 recyclerView.setAdapter(new recycleradpater(getContext(),articleListGlobal,1));
             }

@@ -44,10 +44,11 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holder holder, int position) {
+    public void onBindViewHolder(@NonNull holder holder, final int position) {
         final Article article=articleList.get(position);
         holder.t.setText(article.getTitle());
-        Glide.with(context).load(article.getImage_url()).into(holder.i);
+        holder.t1.setText(article.getDescription());
+        Glide.with(context).load(article.getImage_url()).centerCrop().placeholder(R.drawable.logo).into(holder.i);
         holder.c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,9 +72,13 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
                 DatabaseHandler db=new DatabaseHandler(context);
                 if(where==1) {
                     if (article.getSaved() == 0) {
-                        db.addArticle(article);
+                        int a=db.addArticle(article);
                         article.setSaved(1);
-                        Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+                        if(a==1) {
+                            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Already Saved", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(context, "Already Saved", Toast.LENGTH_SHORT).show();
                     }
@@ -82,6 +87,7 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
                     Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
                     db.deleteArticle(article);
                     article.setSaved(0);
+                    notifyItemRemoved(position);
                 }
 
                counter=0;
@@ -98,12 +104,14 @@ public class recycleradpater extends RecyclerView.Adapter<recycleradpater.holder
 
     class holder extends RecyclerView.ViewHolder{
          TextView t;
+        TextView t1;
          ImageView i;
          CardView c;
         public holder(@NonNull View itemView) {
             super(itemView);
             c=itemView.findViewById(R.id.cardview);
             t=itemView.findViewById(R.id.title);
+            t1=itemView.findViewById(R.id.description);
             i=itemView.findViewById(R.id.imageview);
         }
     }

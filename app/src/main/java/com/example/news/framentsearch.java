@@ -62,7 +62,7 @@ public class framentsearch extends Fragment {
     }
     public void display(){
         // API VOLLEY SEARCHING CODE WITH QUER AS QUERY GIVEN BY USER
-        url="https://gnews.io/api/v3/search?q="+quer+"&token=66d8edc44c6fd71fc4b340fce0ad0f30";
+        url="https://gnews.io/api/v3/search?q="+quer+"&token=b06baf6b60a22fd659f2d61388d47c6e";
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

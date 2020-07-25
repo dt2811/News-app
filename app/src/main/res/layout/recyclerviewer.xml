@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -17,23 +20,42 @@
 
             <ImageView
                 android:id="@+id/imageview"
-                android:layout_width="match_parent"
-                android:layout_height="148dp"
+                android:layout_width="369dp"
+                android:layout_height="170dp"
                 android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="369dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksandbold"
-                android:gravity="center"
+                android:fontFamily="@font/quicksand"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+
+                android:textStyle="bold"
                 android:padding="2.5dp"
                 android:paddingLeft="2.5dp"
                 android:paddingTop="2.5dp"
                 android:paddingBottom="2.5dp"
-                android:text="DESCRIPTION"
+                android:text="Title"
                 android:textColor="#000"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="369dp"
+                android:layout_height="100dp"
+                android:fontFamily="@font/quicksand"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+
+                android:padding="2.5dp"
+                android:paddingLeft="2.5dp"
+                android:paddingTop="2.5dp"
+                android:paddingBottom="2.5dp"
+                android:text="Description"
+                android:textColor="#000"
+                android:textSize="20sp"
+
             />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
