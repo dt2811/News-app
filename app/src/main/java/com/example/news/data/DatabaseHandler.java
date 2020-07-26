@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -38,15 +39,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addArticle(Article article){
+    public int addArticle(Article article){
         SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put(Util.KEY_TITLE,article.getTitle());
-        values.put(Util.KEY_IMAGE_URL,article.getImage_url());
-        values.put(Util.KEY_DESCRIPTION,article.getDescription());
-        values.put(Util.KEY_ARTICLE_URL,article.getArticle_url());
-        db.insert(Util.TABLE_NAME,null,values);
-        db.close();
+        if(!checkArticle(article)) {
+            ContentValues values = new ContentValues();
+            values.put(Util.KEY_TITLE, article.getTitle());
+            values.put(Util.KEY_IMAGE_URL, article.getImage_url());
+            values.put(Util.KEY_DESCRIPTION, article.getDescription());
+            values.put(Util.KEY_ARTICLE_URL, article.getArticle_url());
+            db.insert(Util.TABLE_NAME, null, values);
+            db.close();
+            return 1;
+        } else{
+            return 0;
+        }
     }
     public List<Article> getAllArticles(){
         SQLiteDatabase db=this.getReadableDatabase();
@@ -70,6 +76,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         db.delete(Util.TABLE_NAME,Util.KEY_ID+"=?",new String[]{String.valueOf(article.getId())});
         db.close();
+    }
+    public boolean checkArticle(Article article){
+        SQLiteDatabase db=this.getReadableDatabase();
+        ArrayList<String> articleList=new ArrayList<>();
+        String selectAll="SELECT * FROM "+Util.TABLE_NAME;
+        Cursor cursor=db.rawQuery(selectAll,null);
+        if(cursor.moveToFirst()){
+            do {
+                articleList.add(cursor.getString(4));
+            }while (cursor.moveToNext());
+        }
+        if(articleList.contains(article.getArticle_url())){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

@@ -7,25 +7,40 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="385dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/quicksand"
+        android:text="Pro Tip: Long Press an article to save or delete it ;)"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/t5"
-        android:layout_width="312dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/quicksandbold"
+        android:layout_width="315dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/quicksand"
         android:text="Saved Articles"
         android:textColor="#000"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler2"
         android:layout_width="384dp"
         android:layout_height="552dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,new framenthome()).commit();
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom);
-        bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
-    private BottomNavigationView.OnNavigationItemReselectedListener navigationItemReselectedListener=new BottomNavigationView.OnNavigationItemReselectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public void onNavigationItemReselected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment=null;
             switch (item.getItemId()){
                 case R.id.HomeButton:
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment=new framentlastread();
                     break; }
                     getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+            return true;
         }
     };
 }
