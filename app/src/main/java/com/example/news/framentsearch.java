@@ -1,7 +1,6 @@
 package com.example.news;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +42,7 @@ public class framentsearch extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                 quer=" ";
                 quer=s;
             display();
                 return true;
@@ -62,6 +62,7 @@ public class framentsearch extends Fragment {
     }
     public void display(){
         // API VOLLEY SEARCHING CODE WITH QUER AS QUERY GIVEN BY USER
+        articleList.clear();
         url="https://gnews.io/api/v3/search?q="+quer+"&token=b06baf6b60a22fd659f2d61388d47c6e";
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

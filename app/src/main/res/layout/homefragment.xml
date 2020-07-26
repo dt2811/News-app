@@ -32,6 +32,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/quicksandbold"
         android:text="COVID 19   INDIA"
+        android:textSize="15dp"
         android:textColor="#45CE30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
