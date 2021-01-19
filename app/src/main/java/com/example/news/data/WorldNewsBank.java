@@ -18,7 +18,7 @@ import java.util.List;
 
 public class WorldNewsBank {
     ArrayList<Article> articleArrayList=new ArrayList<>();
-    private String url="https://api.nytimes.com/svc/topstories/v2/world.json?api-key=RvxHN3VZSXYjWlcBONNqO2DBnvaEFHlY";
+    private String url="https://api.nytimes.com/svc/topstories/v2/world.json?api-key=ENTER-KEY-HERE";
     public List<Article> getArticle(final AnswerListAsyncResponse callback){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
